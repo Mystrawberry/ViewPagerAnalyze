@@ -5,6 +5,7 @@ import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.ViewParent;
@@ -49,6 +50,13 @@ public class TouchLayout extends FrameLayout {
         final ViewConfiguration configuration = ViewConfiguration.get(getContext());
         mTouchSlop = configuration.getScaledPagingTouchSlop();
 
+
+        scrollTo(-200, getScrollY()); // 如果是正的200 呢，相加是怎么样的结果呢？
+        int old = getScrollX();
+
+        Log.e("old", "oldScrollX-->" + old);
+
+
     }
 
     @Override
@@ -83,7 +91,6 @@ public class TouchLayout extends FrameLayout {
                     scrollTo((int) (xDiff + mLastScrollX), getScrollY());
                     mLastMotionX = x - mInitialMotionX > 0 ? mInitialMotionX + mTouchSlop :
                             mInitialMotionX - mTouchSlop;
-                    mLastScrollX = (int) xDiff;
 
                 }
 
